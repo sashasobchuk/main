@@ -12,7 +12,7 @@ export class RegisterDto {
 
   @Expose()
   @ApiProperty()
-  @IsNotEmpty({ message: 'Password is required' })
+  // @IsNotEmpty({ message: 'Password is required' })
   @IsEmail()
   email: string;
 

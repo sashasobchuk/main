@@ -23,8 +23,9 @@ import {
 export class AuthController {
   constructor(
     private readonly authService: AuthService,
-    private readonly userService: UserService,
+    // private readonly userService: UserService,
   ) {}
+
 
   //api
   @Post('register')
@@ -41,10 +42,11 @@ export class AuthController {
   @UseInterceptors(ClassSerializerInterceptor)
   @SerializeOptions({ excludeExtraneousValues: true })
   async register(@Body() user: RegisterDto) {
-    await this.userService.validateUserRegistration(user);
-
-    return await this.authService.register(user);
+    // await this.userService.validateUserRegistration(user);
+    //
+    // return await this.authService.register(user);
   }
+
 
   //api
   @Post('login')

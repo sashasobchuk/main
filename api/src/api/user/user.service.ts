@@ -10,12 +10,17 @@ import { plainToInstance } from 'class-transformer';
 
 import { Role, User } from '../../entities';
 import { RegisterDto, UpdateUserDto, UserDto } from '../../dto';
+import { InjectRepository } from '@nestjs/typeorm'
 
 @Injectable()
 export class UserService {
   private readonly entityManager: EntityManager;
 
-  constructor(private readonly dataSource: DataSource) {
+  constructor(
+    private readonly dataSource: DataSource
+  ) {
+    console.log('DataSource:1111111', this.dataSource);
+
     this.entityManager = this.dataSource.createEntityManager();
   }
 

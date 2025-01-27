@@ -7,9 +7,15 @@ import { AuthModule } from '../auth/auth.module';
 import { forwardRef } from '@nestjs/common';
 import { APP_FILTER } from '@nestjs/core';
 import { AllExceptionsFilter } from '../../dto/utils/ExceptionFilter';
+import { TypeOrmModule } from '@nestjs/typeorm'
+import { Role, User,Permission } from '../../entities'
 
 @Module({
-  imports: [forwardRef(() => AuthModule), EntitiesModule],
+  imports: [
+    EntitiesModule,
+    // TypeOrmModule.forFeature([User,Role,Permission]),
+    forwardRef(() => AuthModule)
+  ],
   controllers: [UserController],
   providers: [
     UserService,

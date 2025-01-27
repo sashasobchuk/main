@@ -17,7 +17,7 @@ export class AuthService {
     private userService: UserService,
   ) {}
 
-  async register(userCandidate: RegisterDto) {
+  async register(userCandidate: RegisterDto): Promise<{token: string, user: UserDto}> {
     const secret = process.env.JWT_SECRET;
 
     const user = await this.userService.createNewUser(userCandidate);
@@ -40,7 +40,7 @@ export class AuthService {
     };
   }
 
-  async login(email: string, password: string) {
+  async login(email: string, password: string): Promise<{token: string, user: UserDto}> {
     const secret = process.env.JWT_SECRET;
 
     const user = await this.userService.getUserByEmail(email);
@@ -78,3 +78,5 @@ export class AuthService {
     };
   }
 }
+
+
