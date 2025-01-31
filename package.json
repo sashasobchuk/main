@@ -1,0 +1,29 @@
+{
+  "name": "@root/root",
+  "private": true,
+  "engines": {
+    "node": ">=14",
+    "yarn": ">=1.22"
+  },
+  "workspaces": [
+    "api",
+    "front",
+    "dto",
+    "typescript"
+  ],
+  "dependencies": {
+    "lerna": "^8.1.9"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "pm2": "^5.4.3",
+    "yarn": "^1.22.22"
+  },
+  "scripts": {
+    "api": "yarn workspace @root/api start:dev",
+    "front": "yarn workspace @root/front run dev2",
+    "dto": "yarn workspace @root/dto run dev",
+
+    "all": "concurrently \"yarn api\" \"yarn front\" \"yarn dto\"  "
+  }
+}

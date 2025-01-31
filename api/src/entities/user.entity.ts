@@ -22,7 +22,7 @@ export class User {
 
   @Expose()
   @Index()
-  @Column({ type: 'varchar', unique: true })
+  @Column({ type: 'varchar', /*unique: true*/ })
   email: string;
 
   @Exclude()

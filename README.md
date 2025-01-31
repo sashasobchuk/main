@@ -14,6 +14,7 @@
 
 >### Запуск сервера в dev режимі: 
 > - yarn run:dev
+> - yarn run dev2
 
 >### <p>Запуск бази даних</p>
 > - docker compose build # <em>один раз</em>  

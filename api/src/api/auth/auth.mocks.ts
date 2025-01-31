@@ -1,5 +1,6 @@
-import { UserDto } from '../../dto'
+// import { UserDto } from '../../dto'
 import { Module } from '@nestjs/common'
+import { UserDto } from '@root/dto'
 
 
 @Module({

@@ -9,17 +9,16 @@ import * as bcrypt from 'bcrypt';
 import { plainToInstance } from 'class-transformer';
 
 import { Role, User } from '../../entities';
-import { RegisterDto, UpdateUserDto, UserDto } from '../../dto';
-import { InjectRepository } from '@nestjs/typeorm'
+// import { RegisterDto, UpdateUserDto, UserDto } from '../../dto';
+import { InjectDataSource } from '@nestjs/typeorm';
+import {RegisterDto, UpdateUserDto, UserDto} from "@root/dto/dist";
 
 @Injectable()
 export class UserService {
   private readonly entityManager: EntityManager;
 
-  constructor(
-    private readonly dataSource: DataSource
-  ) {
-    console.log('DataSource:1111111', this.dataSource);
+  // constructor(private readonly dataSource: DataSource) {
+  constructor(@InjectDataSource() private dataSource: DataSource) {
 
     this.entityManager = this.dataSource.createEntityManager();
   }
@@ -46,7 +45,7 @@ export class UserService {
 
   async createNewUser(userCandidate: RegisterDto) {
     // Перевірка та валідація користувача
-    await this.validateUserRegistration(userCandidate);
+    // await this.validateUserRegistration(userCandidate);
 
     // Хешування пароля
     const passwordDigest = await this.hashUserPassword(userCandidate.password);
@@ -111,11 +110,11 @@ export class UserService {
     return !!user;
   }
 
-  async getUserByEmail(email: string) {
+  async getUserByUsername(username: string) {
     return await this.entityManager
       .createQueryBuilder(User, 'user')
       .select(['user', 'user.passwordDigest'])
-      .where('user.email = :email', { email })
+      .where('user.username = :username', { username })
       .getOne();
   }
 

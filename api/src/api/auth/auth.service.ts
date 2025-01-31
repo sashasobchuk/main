@@ -2,7 +2,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UserService } from '../user/user.service';
 import { plainToInstance } from 'class-transformer';
-import { RegisterDto, UserDto } from '../../dto';
+import { RegisterDto, UserDto } from '@root/dto';
 
 interface Payload {
   id: number;
@@ -17,7 +17,7 @@ export class AuthService {
     private userService: UserService,
   ) {}
 
-  async register(userCandidate: RegisterDto): Promise<{token: string, user: UserDto}> {
+  async register(userCandidate: RegisterDto) {
     const secret = process.env.JWT_SECRET;
 
     const user = await this.userService.createNewUser(userCandidate);
@@ -40,10 +40,10 @@ export class AuthService {
     };
   }
 
-  async login(email: string, password: string): Promise<{token: string, user: UserDto}> {
+  async login(username: string, password: string) {
     const secret = process.env.JWT_SECRET;
 
-    const user = await this.userService.getUserByEmail(email);
+    const user = await this.userService.getUserByUsername(username);
 
     if (!user) {
       throw new BadRequestException('USER_NOT_FOUND');
@@ -58,12 +58,12 @@ export class AuthService {
       throw new BadRequestException('INVALID_PASSWORD');
     }
 
-    const { id, username } = user;
+    // const { id, username } = user;
 
     const payload: Payload = {
-      id,
-      username,
-      email,
+      id: user.id,
+      username: user.username,
+      email:user.email,
     };
 
     const jwtToken = await this.jwtService.signAsync(payload, {
@@ -78,5 +78,3 @@ export class AuthService {
     };
   }
 }
-
-

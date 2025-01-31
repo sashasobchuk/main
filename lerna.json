@@ -1,0 +1,13 @@
+{
+  "npmClient": "yarn",
+
+  "useWorkspaces": true,
+
+  "packages": [
+    "front/",
+    "api/",
+    "dto/",
+    "typescript/"
+  ],
+  "version": "independent"
+}

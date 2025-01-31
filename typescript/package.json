@@ -1,0 +1,7 @@
+{
+  "name": "@root/typescript",
+  "version": "0.0.1",
+  "main": "tsconfig.json",
+  "license": "UNLICENSED"
+}
+

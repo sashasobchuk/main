@@ -27,9 +27,10 @@ import {
 } from '@nestjs/swagger';
 
 import { UserService } from './user.service';
-import { RegisterDto, UpdateUserDto, UserDto } from '../../dto';
+import { RegisterDto, UpdateUserDto, UserDto } from '@root/dto';
 import { AuthGuard } from '../auth/auth.guard';
 import { User } from '../../entities';
+// import { UserDto } from '@root/dto'
 
 @UseGuards(AuthGuard)
 @Controller('users')

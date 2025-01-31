@@ -9,7 +9,7 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { LoginDto, RegisterDto, UserDto } from '../../dto';
+// import { LoginDto, RegisterDto, UserDto } from '../../dto';
 import { UserService } from '../user/user.service';
 import {
   ApiBadRequestResponse,
@@ -18,14 +18,14 @@ import {
   ApiOperation,
   ApiResponse,
 } from '@nestjs/swagger';
+import {LoginDto, RegisterDto, UserDto} from "@root/dto/dist";
 
 @Controller('auth')
 export class AuthController {
   constructor(
     private readonly authService: AuthService,
-    // private readonly userService: UserService,
+    private readonly userService: UserService,
   ) {}
-
 
   //api
   @Post('register')
@@ -42,11 +42,11 @@ export class AuthController {
   @UseInterceptors(ClassSerializerInterceptor)
   @SerializeOptions({ excludeExtraneousValues: true })
   async register(@Body() user: RegisterDto) {
+    console.log(44444444444)
     // await this.userService.validateUserRegistration(user);
-    //
-    // return await this.authService.register(user);
-  }
 
+    return await this.authService.register(user);
+  }
 
   //api
   @Post('login')
@@ -65,7 +65,8 @@ export class AuthController {
   //transform response
   @UseInterceptors(ClassSerializerInterceptor)
   @SerializeOptions({ excludeExtraneousValues: true })
-  async login(@Body() { email, password }: LoginDto) {
-    return await this.authService.login(email, password);
+  async login(@Body() { username, password }: LoginDto) {
+    console.log(88888888,username,password);
+    return await this.authService.login(username, password);
   }
 }
