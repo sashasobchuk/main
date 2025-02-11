@@ -10,15 +10,14 @@ import {
 } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
+@Expose()
 export class GetTableDefaultDto {
-  @Expose()
   @IsOptional()
   @Type(() => Number)
   @IsNumber()
   @ApiProperty({ required: false })
   offset?: number;
 
-  @Expose()
   @IsOptional()
   @Type(() => Number)
   @IsNumber()
@@ -27,14 +26,12 @@ export class GetTableDefaultDto {
   @ApiProperty({ required: false })
   limit?: number;
 
-  @Expose()
   @IsOptional()
   @IsString()
   @IsNotEmpty()
   @ApiProperty({ required: false })
   q?: string;
 
-  @Expose()
   @IsOptional()
   @Transform(({ value }) => JSON.parse(value))
   @IsArray()

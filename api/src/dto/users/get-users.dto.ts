@@ -9,15 +9,14 @@ import {
 } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
+@Expose()
 export class GetUsersDto {
-  @Expose()
   @IsOptional()
   @Type(() => Number)
   @IsNumber()
   @ApiProperty({ required: false })
   offset?: number;
 
-  @Expose()
   @IsOptional()
   @Type(() => Number)
   @IsNumber()
@@ -26,28 +25,24 @@ export class GetUsersDto {
   @ApiProperty({ required: false })
   limit?: number;
 
-  @Expose()
   @IsOptional()
   @Type(() => Number)
   @IsNumber()
   @ApiProperty({ required: false })
   id?: number;
 
-  @Expose()
   @IsOptional()
   @IsString()
   @IsNotEmpty()
   @ApiProperty({ required: false })
   username?: string;
 
-  @Expose()
   @IsOptional()
   @IsString()
   @IsNotEmpty()
   @ApiProperty({ required: false })
   email?: string;
 
-  @Expose()
   @IsOptional()
   @IsString()
   @IsNotEmpty()

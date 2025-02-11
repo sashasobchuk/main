@@ -2,9 +2,9 @@ import { Expose } from 'class-transformer';
 import { ApiProperty, ApiTags } from '@nestjs/swagger';
 import { PermissionDto } from '../permissions';
 
+@Expose()
 @ApiTags('RoleItemDto')
 export class RoleItemDto {
-  @Expose()
   @ApiProperty()
   id: number;
 
@@ -12,7 +12,6 @@ export class RoleItemDto {
   @ApiProperty()
   name: string;
 
-  @Expose()
   @ApiProperty()
   permissions: PermissionDto[];
 }

@@ -3,6 +3,7 @@ import { IsNumber, IsOptional, IsString, Max, Min } from 'class-validator';
 import { CountRolesDto } from './count-roles.dto';
 import { ApiProperty, ApiTags } from '@nestjs/swagger';
 
+@Expose()
 @ApiTags('FindRolesDto')
 export class FindRolesDto extends CountRolesDto {
   @IsOptional()

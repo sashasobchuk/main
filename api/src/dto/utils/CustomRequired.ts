@@ -12,7 +12,7 @@ export function CustomRequired(validationOptions?: ValidationOptions) {
       propertyName: propertyName,
       options: validationOptions,
       validator: {
-        validate(value: any) {
+        validate(value: unknown) {
           return value !== null && value !== undefined && value !== ''; // Basic check for empty values
         },
         defaultMessage(args: ValidationArguments) {
